@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="michaelkim.byg.homeTabbed$PlaceholderFragment">
+
+    <CheckBox
+        android:id="@+id/publicCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="Public"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/prayerRequestView"
+        android:layout_marginEnd="15dp" />
+
+    <CheckBox
+        android:id="@+id/pastorsCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pastors"
+        android:layout_below="@+id/publicCheckBox"
+        android:layout_alignStart="@+id/publicCheckBox"
+        android:layout_marginTop="23dp" />
+
+    <CheckBox
+        android:id="@+id/mentorsCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="43dp"
+        android:text="Mentors"
+        android:layout_alignBaseline="@+id/publicCheckBox"
+        android:layout_alignBottom="@+id/publicCheckBox"
+        android:layout_alignEnd="@+id/PRField" />
+
+    <CheckBox
+        android:id="@+id/anonCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anonymous"
+        android:layout_alignBaseline="@+id/pastorsCheckBox"
+        android:layout_alignBottom="@+id/pastorsCheckBox"
+        android:layout_alignStart="@+id/mentorsCheckBox" />
+
+    <Button
+        android:id="@+id/uploadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
+        android:text="Upload" />
+
+    <EditText
+        android:id="@+id/PRField"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:layout_below="@+id/prayerRequestView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/prayerRequestView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="Prayer Request:"
+        android:layout_below="@+id/anonCheckBox"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

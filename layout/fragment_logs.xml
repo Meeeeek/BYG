@@ -1,0 +1,127 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="michaelkim.byg.homeLogs">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/logAttendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95dp"
+        android:text="Attendance"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/logMissingField" />
+
+    <EditText
+        android:id="@+id/logAttendanceField"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_alignBaseline="@+id/logAttendance"
+        android:layout_alignBottom="@+id/logAttendance"
+        android:layout_toEndOf="@+id/logAttendance" />
+
+    <TextView
+        android:id="@+id/logMissing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/logAttendance"
+        android:layout_below="@+id/logAttendanceField"
+        android:layout_marginTop="14dp"
+        android:text="Missing Students and Reasons" />
+
+    <EditText
+        android:id="@+id/logMissingField"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/logMissing"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/logGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grade"
+        android:layout_alignBaseline="@+id/logAttendanceField"
+        android:layout_alignBottom="@+id/logAttendanceField"
+        android:layout_toStartOf="@+id/spinner"
+        android:layout_marginEnd="12dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/logGrade"
+        android:layout_alignEnd="@+id/logMissingField" />
+
+    <TextView
+        android:id="@+id/logDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/logMissingField"
+        android:layout_below="@+id/logMissingField"
+        android:layout_marginTop="23dp"
+        android:text="What did you do today?" />
+
+    <EditText
+        android:id="@+id/logDayField"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/logDay"
+        android:layout_below="@+id/logDay"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/logPR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/logDayField"
+        android:layout_below="@+id/logDayField"
+        android:layout_marginTop="24dp"
+        android:text="Prayer Requests for your students" />
+
+    <EditText
+        android:id="@+id/logPRField"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/logPR"
+        android:layout_below="@+id/logPR"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/logComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/logPRField"
+        android:layout_below="@+id/logPRField"
+        android:layout_marginTop="29dp"
+        android:text="Comments" />
+
+    <EditText
+        android:id="@+id/logCommentsField"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/logComments"
+        android:layout_alignStart="@+id/logComments" />
+
+    <Button
+        android:id="@+id/submitLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Submit" />
+
+</RelativeLayout>
