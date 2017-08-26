@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/studentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textAlignment="viewStart"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/studentBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Birthday"
+        android:inputType="date"
+        android:layout_below="@+id/studentName"
+        android:layout_alignStart="@+id/studentName" />
+
+    <EditText
+        android:id="@+id/studentPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:layout_below="@+id/studentBirthday"
+        android:layout_alignStart="@+id/studentBirthday" />
+
+    <EditText
+        android:id="@+id/studentAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/studentPhone"
+        android:layout_alignStart="@+id/studentPhone" />
+
+    <EditText
+        android:id="@+id/studentCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="City"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/studentAddress"
+        android:layout_alignStart="@+id/studentAddress" />
+
+    <EditText
+        android:id="@+id/studentState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="State"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/studentCity"
+        android:layout_alignStart="@+id/studentCity" />
+
+    <EditText
+        android:id="@+id/studentZip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Zip"
+        android:inputType="number"
+        android:layout_below="@+id/studentState"
+        android:layout_alignStart="@+id/studentState" />
+
+    <Button
+        android:id="@+id/addStudentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/studentZip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:text="ADD" />
+</RelativeLayout>
