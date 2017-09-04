@@ -23,10 +23,27 @@
 
     <WebView
         android:id="@+id/byg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="32dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignBottom="@+id/addAnnouncement"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcomeText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="Logout" />
 
 </RelativeLayout>

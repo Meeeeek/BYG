@@ -20,12 +20,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/shawn"
-        android:layout_marginTop="33dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/register"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        app:srcCompat="@drawable/shawn" />
 
     <TextView
         android:id="@+id/loginButton"
@@ -41,4 +41,26 @@
         android:layout_marginBottom="22dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/usernameField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/usernameField"
+        android:layout_below="@+id/usernameField"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword" />
 </RelativeLayout>

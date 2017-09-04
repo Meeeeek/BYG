@@ -64,7 +64,6 @@ public class homeDirectory extends Fragment {
 
                 for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()){
                     student student = studentSnapshot.getValue(student.class);
-
                     studentList.add(student);
                 }
 
@@ -104,6 +103,7 @@ public class homeDirectory extends Fragment {
             TextView grade = (TextView) view.findViewById(R.id.studentGrade);
             TextView birthday = (TextView) view.findViewById(R.id.studentBirthday);
             TextView address = (TextView) view.findViewById(R.id.studentAddress);
+            TextView phone = (TextView) view.findViewById(R.id.studentPhone);
 
             student student = studentList.get(i);
 
@@ -111,6 +111,7 @@ public class homeDirectory extends Fragment {
             grade.setText(student.getGrade());
             birthday.setText(student.getBirthday());
             address.setText(student.getAddress() + ", " + student.getCity() + ", " + student.getState() + ", " + student.getZip());
+            phone.setText(student.getPhone());
 
             return view;
         }

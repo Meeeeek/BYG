@@ -2,37 +2,63 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/studentName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="21dp"
-        android:layout_y="25dp"
-        android:text="STUDENT NAME" />
+    <Button
+        android:id="@+id/editStudent"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_x="294dp"
+        android:layout_y="20dp"
+        android:text="edit"
+        android:textSize="7sp" />
 
-    <TextView
-        android:id="@+id/studentBirthday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="293dp"
-        android:layout_y="26dp"
-        android:text="07/17/1995" />
+    <Button
+        android:id="@+id/deleteStudent"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_x="294dp"
+        android:layout_y="54dp"
+        android:text="delete"
+        android:textSize="7sp" />
 
     <TextView
         android:id="@+id/studentGrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="184dp"
-        android:layout_y="25dp"
+        android:layout_x="199dp"
+        android:layout_y="27dp"
         android:text="GRADE" />
+
+    <TextView
+        android:id="@+id/studentBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="191dp"
+        android:layout_y="77dp"
+        android:text="07/17/1995" />
+
+    <TextView
+        android:id="@+id/studentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="46dp"
+        android:layout_y="27dp"
+        android:text="STUDENT NAME" />
 
     <TextView
         android:id="@+id/studentAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="21dp"
-        android:layout_y="60dp"
+        android:layout_y="54dp"
         android:text="449 Brinkerhoff Ave. Fort Lee, NJ, 07024"
         android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/studentPhone"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_x="46dp"
+        android:layout_y="77dp"
+        android:text="201-789-4852" />
 
 </AbsoluteLayout>

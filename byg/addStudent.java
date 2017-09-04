@@ -47,9 +47,8 @@ public class addStudent extends AppCompatActivity {
                 String zip = sZip.getText().toString().trim();
 
                 if (!TextUtils.isEmpty(name)){
-                    String id = databaseStudents.push().getKey();
                     student newStudent = new student(name, grade, birthday, phone, address, city, state, zip);
-                    databaseStudents.child(id).setValue(newStudent);
+                    databaseStudents.child(name).setValue(newStudent);
 
                     Toast.makeText(getApplicationContext(), "Student Added.", Toast.LENGTH_SHORT).show();
                 }
