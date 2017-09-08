@@ -1,7 +1,9 @@
 package michaelkim.byg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,19 +21,23 @@ public class homeBulletin extends Fragment {
     ArrayList<String> sampleNames = new ArrayList<>();
     ArrayList<Integer> sampleImageViews = new ArrayList<>();
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    FloatingActionButton addPost;
 
-        sampleNames.add("Pinned Post 1");
-        sampleImageViews.add(R.drawable.sampleimageviewone);
-        sampleNames.add("Pinned Post 2");
-        sampleImageViews.add(R.drawable.sampleimageviewtwo);
-        sampleNames.add("Pinned Post 3");
-        sampleImageViews.add(R.drawable.sampleimageviewthree);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_bulletin, container, false);
         pinnedPosts = (ListView) view.findViewById(R.id.pinnedPosts);
         bulletinAdapter bulletinAdapter = new bulletinAdapter();
         pinnedPosts.setAdapter(bulletinAdapter);
+
+        addPost = (FloatingActionButton) view.findViewById(R.id.addPinned);
+        addPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addPost = new Intent(getActivity(), addPost.class);
+                startActivity(addPost);
+            }
+        });
 
         return view;
 
