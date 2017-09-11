@@ -1,5 +1,8 @@
 package michaelkim.byg;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+
 /**
  * Created by Michael Kim on 9/7/2017.
  */
@@ -7,6 +10,8 @@ package michaelkim.byg;
 public class post {
 
     String subject, time, date, content, name;
+    FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
 
     public post() {
 

@@ -45,20 +45,21 @@
         android:text="STUDENT NAME" />
 
     <TextView
-        android:id="@+id/studentAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="21dp"
-        android:layout_y="54dp"
-        android:text="449 Brinkerhoff Ave. Fort Lee, NJ, 07024"
-        android:textAlignment="center" />
-
-    <TextView
         android:id="@+id/studentPhone"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_x="46dp"
         android:layout_y="77dp"
         android:text="201-789-4852" />
+
+    <TextView
+        android:id="@+id/studentAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="23dp"
+        android:layout_y="54dp"
+        android:text="449 Brinkerhoff Ave. Fort Lee, NJ, 07024"
+        android:textAlignment="center"
+        android:textSize="11sp" />
 
 </AbsoluteLayout>

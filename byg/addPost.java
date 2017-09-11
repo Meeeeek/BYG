@@ -1,5 +1,6 @@
 package michaelkim.byg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -41,15 +42,16 @@ public class addPost extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please Enter Text into the Post.", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy h:mm:ss a");
+                    DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy h:mm:ss a");
                     Date date = new Date();
                     String todaysDate = dateFormat.format(date);
-                    String name = firebaseAuth.getCurrentUser().getEmail();
-                    String justTheName = name.substring(0, name.indexOf("@"));
-                    post post = new post(postSubject.getText().toString().trim(), todaysDate.substring(0, 10),
-                            todaysDate.substring(10), postText.getText().toString().trim(), name);
+                    String name = firebaseAuth.getCurrentUser().getDisplayName();
+                    post post = new post(postSubject.getText().toString().trim(), todaysDate.substring(10),
+                            todaysDate.substring(0, 10), postText.getText().toString().trim(), name);
                     staffPosts.child(todaysDate).setValue(post);
                     Toast.makeText(getApplicationContext(), "Post added.", Toast.LENGTH_SHORT).show();
+                    Intent backToPosts = new Intent(getApplicationContext(), homeBulletin.class);
+                    startActivity(backToPosts);
                 }
             }
         });

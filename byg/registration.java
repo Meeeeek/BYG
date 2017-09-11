@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -222,8 +223,21 @@ public class registration extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
                                     databaseMentors.child(name).setValue(newMentor);
-                                    Toast.makeText(getApplicationContext(), "Mentor Added.", Toast.LENGTH_SHORT).show();
+                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(name)
+                                            .build();
+                                    firebaseAuth.getCurrentUser().updateProfile(profileUpdates)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()){
+                                                        Toast.makeText(getApplicationContext(), "Mentor Added.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
                                     progressDialog.dismiss();
+                                    Intent backToHome = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(backToHome);
                                 }
                                 else{
                                     try {
