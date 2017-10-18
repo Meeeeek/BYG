@@ -9,9 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +30,16 @@ public class homeDirectory extends Fragment {
     ArrayList<student> studentList;
     directoryAdapter directoryAdapter;
     DatabaseReference databaseStudents;
+    FirebaseAuth firebaseAuth;
 
+    Button editStudent, deleteStudent;
     FloatingActionButton fab;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_directory, container, false);
 
+        firebaseAuth = FirebaseAuth.getInstance();
         databaseStudents = FirebaseDatabase.getInstance().getReference("Students");
         studentList = new ArrayList<>();
 
@@ -56,19 +63,35 @@ public class homeDirectory extends Fragment {
     public void onStart() {
         super.onStart();
 
-        databaseStudents.addValueEventListener(new ValueEventListener() {
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        String name = currentUser.getUid();
+        DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference("Mentor/" + name + "/grade");
+        firebaseDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                final String grade = (dataSnapshot.getValue(String.class));
+                Toast.makeText(getContext(), grade, Toast.LENGTH_SHORT).show();
+                databaseStudents.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        studentList.clear();
 
-                studentList.clear();
+                        for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()){
+                            student student = studentSnapshot.getValue(student.class);
+                            if (student.getGrade().equals(grade)) {
+                                studentList.add(student);
+                            }
+                        }
 
-                for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()){
-                    student student = studentSnapshot.getValue(student.class);
-                    studentList.add(student);
-                }
+                        directoryAdapter = new directoryAdapter();
+                        studentDirectory.setAdapter(directoryAdapter);
+                    }
 
-                directoryAdapter = new directoryAdapter();
-                studentDirectory.setAdapter(directoryAdapter);
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
@@ -105,13 +128,41 @@ public class homeDirectory extends Fragment {
             TextView address = (TextView) view.findViewById(R.id.studentAddress);
             TextView phone = (TextView) view.findViewById(R.id.studentPhone);
 
-            student student = studentList.get(i);
+            final student student = studentList.get(i);
 
             name.setText(student.getName());
             grade.setText(student.getGrade());
             birthday.setText(student.getBirthday());
             address.setText(student.getAddress() + ", " + student.getCity() + ", " + student.getState() + ", " + student.getZip());
             phone.setText(student.getPhone());
+
+            editStudent = (Button) view.findViewById(R.id.editStudent);
+            deleteStudent = (Button) view.findViewById(R.id.deleteStudent);
+
+            editStudent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    student edittingStudent = studentList.get(i);
+                    Intent editStudent = new Intent(getContext(), addStudent.class);
+                    editStudent.putExtra("studentName", edittingStudent.getName());
+                    editStudent.putExtra("studentBirthday", edittingStudent.getBirthday());
+                    editStudent.putExtra("studentPhone", edittingStudent.getPhone());
+                    editStudent.putExtra("studentAddress", edittingStudent.getAddress());
+                    editStudent.putExtra("studentCity", edittingStudent.getCity());
+                    editStudent.putExtra("studentState", edittingStudent.getState());
+                    editStudent.putExtra("studentZip", edittingStudent.getZip());
+                    startActivity(editStudent);
+                }
+            });
+
+            deleteStudent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String name = studentList.get(i).name;
+                    databaseStudents.child(name).removeValue();
+                    Toast.makeText(getContext(), "Student Removed.", Toast.LENGTH_SHORT).show();
+                }
+            });
 
             return view;
         }

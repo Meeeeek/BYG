@@ -3,282 +3,123 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/regTypeText"
+        android:id="@+id/regiTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="x Registration"
-        android:textAllCaps="true"
-        android:visibility="invisible"
-        android:layout_above="@+id/rNameField"
-        android:layout_alignStart="@+id/rBirthdayField"
-        android:layout_marginBottom="13dp" />
-
-    <TextView
-        android:id="@+id/rName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name: "
-        android:visibility="invisible"
-        android:layout_alignBaseline="@+id/rNameField"
-        android:layout_alignBottom="@+id/rNameField"
-        android:layout_alignStart="@+id/rZip" />
-
-    <TextView
-        android:id="@+id/rBirthday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Birthday:"
-        android:visibility="invisible"
-        android:layout_below="@+id/STUDENTREG"
-        android:layout_alignStart="@+id/rName" />
-
-    <TextView
-        android:id="@+id/rAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address: "
-        android:visibility="invisible"
-        android:layout_below="@+id/rPhoneField"
-        android:layout_alignStart="@+id/rPhone"
-        android:layout_marginTop="20dp" />
-
-    <EditText
-        android:id="@+id/rNameField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:visibility="invisible"
-        android:layout_above="@+id/rEmailField"
-        android:layout_alignStart="@+id/rEmailField" />
-
-    <TextView
-        android:id="@+id/rGrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Grade:"
-        android:visibility="invisible"
-        android:layout_alignTop="@+id/rGradeSpinner"
-        android:layout_toEndOf="@+id/rBirthdayField" />
-
-    <Spinner
-        android:id="@+id/rGradeSpinner"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:layout_alignTop="@+id/rZip"
-        android:layout_toEndOf="@+id/rGrade" />
-
-    <Button
-        android:id="@+id/rBirthdayField"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignBaseline="@+id/rBirthday"
-        android:layout_alignBottom="@+id/rBirthday"
-        android:layout_alignStart="@+id/rAddressField"
-        android:layout_marginStart="18dp"
-        android:text="Select"
-        android:textSize="12sp"
-        android:visibility="invisible" />
-
-    <EditText
-        android:id="@+id/rAddressField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/rAddress"
-        android:layout_alignBottom="@+id/rAddress"
-        android:layout_toEndOf="@+id/rAddress"
-        android:ems="10"
-        android:inputType="textPostalAddress"
-        android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/createAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rGrade"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:onClick="toHome"
-        android:text="Create"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/birthdayDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:visibility="invisible"
-        android:layout_alignBaseline="@+id/rBirthday"
-        android:layout_alignBottom="@+id/rBirthday"
-        android:layout_toEndOf="@+id/regTypeText" />
-
-    <TextView
-        android:id="@+id/rCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/rCityField"
-        android:layout_alignBottom="@+id/rCityField"
-        android:layout_alignStart="@+id/rAddress"
-        android:text="City:"
-        android:visibility="invisible" />
-
-    <EditText
-        android:id="@+id/rCityField"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/createAccount"
-        android:layout_below="@+id/rAddressField"
-        android:layout_marginEnd="26dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/rState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="State:"
-        android:visibility="invisible"
-        android:layout_above="@+id/STAFFREG"
-        android:layout_alignStart="@+id/rGrade"
-        android:layout_marginBottom="64dp" />
-
-    <Spinner
-        android:id="@+id/rStateSpinner"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:layout_alignTop="@+id/rState"
-        android:layout_toEndOf="@+id/rGrade" />
-
-    <TextView
-        android:id="@+id/rZip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/rZipField"
-        android:layout_alignBottom="@+id/rZipField"
-        android:layout_marginEnd="27dp"
-        android:layout_toStartOf="@+id/rCityField"
-        android:text="Zip:"
-        android:visibility="invisible" />
-
-    <EditText
-        android:id="@+id/rZipField"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/rCityField"
-        android:layout_below="@+id/rCityField"
-        android:ems="10"
-        android:inputType="number"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/STUDENTREG"
-        android:layout_width="500dp"
-        android:layout_height="200dp"
-        android:background="#f9f9f9"
-        android:fontFamily="serif-monospace"
-        android:gravity="center"
-        android:text="STUDENT"
-        android:textAllCaps="true"
-        android:textColor="#262626"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:paddingBottom="25dp"
+        android:text="REGISTER"
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/MENTORREG"
-        android:layout_width="500dp"
-        android:layout_height="215dp"
-        android:background="#262626"
-        android:fontFamily="serif-monospace"
-        android:gravity="center"
-        android:text="MENTOR"
-        android:textAllCaps="true"
-        android:textColor="#f9f9f9"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        android:layout_below="@+id/STUDENTREG"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/STAFFREG"
-        android:layout_width="500dp"
-        android:layout_height="170dp"
+        android:id="@+id/mrName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/MENTORREG"
-        android:background="#f9f9f9"
-        android:fontFamily="serif-monospace"
-        android:gravity="center"
-        android:text="STAFF"
-        android:textAllCaps="true"
-        android:textColor="#262626"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible" />
+        android:layout_below="@+id/regiTextTitle"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="50dp"
+        android:text="Name :"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/rPhone"
+        android:id="@+id/mrEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone:"
-        android:visibility="invisible"
-        android:layout_alignBaseline="@+id/rPhoneField"
-        android:layout_alignBottom="@+id/rPhoneField"
-        android:layout_alignEnd="@+id/rName" />
+        android:layout_alignStart="@+id/mrName"
+        android:layout_below="@+id/mrName"
+        android:paddingBottom="50dp"
+        android:text="Email :"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/mrPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mrEmail"
+        android:layout_below="@+id/mrEmail"
+        android:paddingBottom="50dp"
+        android:text="Password :"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/mrGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mrPhone"
+        android:layout_below="@+id/mrPhone"
+        android:text="Grade :"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/mrPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mrPassword"
+        android:layout_below="@+id/mrPassword"
+        android:paddingBottom="50dp"
+        android:text="Phone Number :"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/regButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toHome"
+        android:text="REGISTER"
+        android:textSize="10sp"
+        android:layout_marginBottom="68dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/rPhoneField"
-        android:layout_width="wrap_content"
+        android:id="@+id/mrNameField"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/rAddressField"
-        android:layout_below="@+id/rBirthdayField"
         android:ems="10"
-        android:inputType="phone"
-        android:visibility="invisible" />
+        android:inputType="textPersonName"
+        android:paddingTop="5dp"
+        android:layout_alignTop="@+id/mrName"
+        android:layout_alignStart="@+id/regButton"
+        android:layout_marginStart="24dp" />
 
     <EditText
-        android:id="@+id/rPasswordField"
-        android:layout_width="wrap_content"
+        android:id="@+id/mrEmailField"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_below="@+id/mrName"
+        android:layout_alignStart="@+id/mrNameField" />
+
+    <EditText
+        android:id="@+id/mrPasswordField"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:visibility="invisible"
-        android:layout_above="@+id/rBirthdayField"
-        android:layout_toEndOf="@+id/rPassword" />
+        android:layout_alignTop="@+id/mrPassword"
+        android:layout_alignStart="@+id/mrEmailField" />
 
-    <TextView
-        android:id="@+id/rPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password:"
-        android:visibility="invisible"
-        android:layout_alignBaseline="@+id/rPasswordField"
-        android:layout_alignBottom="@+id/rPasswordField"
-        android:layout_alignStart="@+id/rBirthday" />
-
-    <TextView
-        android:id="@+id/rEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/rEmailField"
-        android:layout_alignBottom="@+id/rEmailField"
-        android:layout_alignStart="@+id/rPhone"
-        android:text="Email:"
-        android:visibility="invisible" />
+    <Spinner
+        android:id="@+id/mrGradeSpinner"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/mrPhoneField"
+        android:layout_alignStart="@+id/mrPhoneField" />
 
     <EditText
-        android:id="@+id/rEmailField"
-        android:layout_width="wrap_content"
+        android:id="@+id/mrPhoneField"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/rPasswordField"
-        android:layout_alignStart="@+id/rPasswordField"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        android:visibility="invisible" />
+        android:inputType="phone"
+        android:layout_alignTop="@+id/mrPhone"
+        android:layout_alignStart="@+id/mrPasswordField" />
 
 </RelativeLayout>

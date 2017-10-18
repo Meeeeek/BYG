@@ -29,21 +29,20 @@ public class homeTabbed extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser() == null){
-            startActivity(new Intent(getContext(), MainActivity.class));
-        }
-
         welcomeText = (TextView) view.findViewById(R.id.welcomeText);
-        welcomeText.setText("Welcome " + firebaseAuth.getCurrentUser().getDisplayName());
+        welcomeText.setText("Welcome");
+        //welcomeText.setText("Welcome " + firebaseAuth.getCurrentUser().getDisplayName());
 
+        /*
         logoutButton = (Button) view.findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 firebaseAuth.signOut();
-                startActivity(new Intent(getActivity(), MainActivity.class));
+                startActivity(new Intent(getActivity(), loginfortheside.class));
             }
         });
+        */
 
         webView = (WebView) view.findViewById(R.id.byg);
         webView.loadUrl("https://www.bethanyyouthgroup.com/");

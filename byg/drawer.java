@@ -71,7 +71,7 @@ public class drawer extends AppCompatActivity
             case R.id.moveNewsfeed:
                 fragment = new homeTabbed();
                 break;
-            case R.id.moveBulletin:
+            /*case R.id.moveBulletin:
                 fragment = new homeBulletin();
                 break;
             case R.id.moveConnect:
@@ -79,19 +79,19 @@ public class drawer extends AppCompatActivity
                 break;
             case R.id.moveMiniGroups:
                 fragment = new homeMiniGroups();
-                break;
+                break;*/
             case R.id.moveLogs:
                 fragment = new homeLogs();
                 break;
-            case R.id.movePrayerRequests:
+            /*case R.id.movePrayerRequests:
                 fragment = new homePR();
-                break;
+                break;*/
             case R.id.moveDirectory:
                 fragment = new homeDirectory();
                 break;
-            case R.id.moveBDChat:
+            /*case R.id.moveBDChat:
                 fragment = new homeBDChat();
-                break;
+                break;*/
         }
 
         if (fragment != null){

@@ -4,18 +4,17 @@ package michaelkim.byg;
  * Created by Michael Kim on 8/25/2017.
  */
 
-public class mentor {
+public class staff {
 
-    String name, email, grade, phone;
+    String name, email, phone;
 
-    public mentor() {
+    public staff() {
 
     }
 
-    public mentor(String n, String e, String g, String p){
+    public staff(String n, String e, String p){
         this.name = n;
         this.email = e;
-        this.grade = g;
         this.phone = p;
     }
 
@@ -33,14 +32,6 @@ public class mentor {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
     }
 
     public String getPhone() {

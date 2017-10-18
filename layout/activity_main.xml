@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="michaelkim.byg.MainActivity">
+    tools:context="michaelkim.byg.loginfortheside">
 
     <TextView
         android:id="@+id/register"
@@ -17,15 +17,6 @@
         android:text="Register"
         android:textAllCaps="true"
         android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/register"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
-        app:srcCompat="@drawable/shawn" />
 
     <TextView
         android:id="@+id/loginButton"
@@ -46,12 +37,12 @@
         android:id="@+id/usernameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="61dp"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_below="@+id/register"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/passwordField"

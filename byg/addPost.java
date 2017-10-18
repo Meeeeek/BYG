@@ -1,6 +1,5 @@
 package michaelkim.byg;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -50,8 +49,6 @@ public class addPost extends AppCompatActivity {
                             todaysDate.substring(0, 10), postText.getText().toString().trim(), name);
                     staffPosts.child(todaysDate).setValue(post);
                     Toast.makeText(getApplicationContext(), "Post added.", Toast.LENGTH_SHORT).show();
-                    Intent backToPosts = new Intent(getApplicationContext(), homeBulletin.class);
-                    startActivity(backToPosts);
                 }
             }
         });

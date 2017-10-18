@@ -1,71 +1,31 @@
 package michaelkim.byg;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+/**
+ * Created by Michael on 10/17/2017.
+ */
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView loginButton;
-
-    EditText username, password;
-    private ProgressDialog progressDialog;
-    private FirebaseAuth firebaseAuth;
+    private static int SPLASH_TIME_OUT = 3000;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.loading_screen);
 
-        progressDialog = new ProgressDialog(this);
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        if (firebaseAuth.getCurrentUser() != null){
-            Intent home = new Intent(getApplicationContext(), drawer.class);
-            startActivity(home);
-        }
-
-        username = (EditText) findViewById(R.id.usernameField);
-        password = (EditText) findViewById(R.id.passwordField);
-        loginButton = (TextView) findViewById(R.id.loginButton);
-    }
-
-    public void toHome (View v){
-        String email = username.getText().toString().trim();
-        String pass = password.getText().toString().trim();
-
-        progressDialog.setMessage("Logging in...");
-        progressDialog.show();
-
-        firebaseAuth.signInWithEmailAndPassword(email, pass)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-                        if (task.isSuccessful()){
-                            Intent home = new Intent(getApplicationContext(), drawer.class);
-                            startActivity(home);
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    public void toRegi (View v){
-        Intent regi = new Intent(this, registration.class);
-        startActivity(regi);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent homeIntent = new Intent (MainActivity.this, drawer.class);
+                startActivity(homeIntent);
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
     }
 }
