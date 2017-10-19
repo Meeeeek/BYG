@@ -7,18 +7,6 @@
     tools:context="michaelkim.byg.loginfortheside">
 
     <TextView
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:onClick="toRegi"
-        android:text="Register"
-        android:textAllCaps="true"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/loginButton"
         android:layout_width="250dp"
         android:layout_height="100dp"
@@ -29,19 +17,19 @@
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="22dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/passwordField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
 
     <EditText
         android:id="@+id/usernameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="125dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
-        android:layout_below="@+id/register"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <EditText

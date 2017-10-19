@@ -21,13 +21,6 @@
         app:fabSize="mini"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
-    <WebView
-        android:id="@+id/byg"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_alignBottom="@+id/addAnnouncement"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"

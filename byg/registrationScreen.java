@@ -175,10 +175,4 @@ public class registrationScreen extends AppCompatActivity {
             }
         }
     }
-
-    @Override
-    public void onBackPressed() {
-            Intent backToHome = new Intent(this, loginfortheside.class);
-            startActivity(backToHome);
-    }
 }

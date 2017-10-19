@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,10 @@ public class homeDirectory extends Fragment {
     ListView studentDirectory;
     ArrayList<student> studentList;
     directoryAdapter directoryAdapter;
+
     DatabaseReference databaseStudents;
     FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
 
     Button editStudent, deleteStudent;
     FloatingActionButton fab;
@@ -40,7 +43,9 @@ public class homeDirectory extends Fragment {
         View view = inflater.inflate(R.layout.fragment_directory, container, false);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseStudents = FirebaseDatabase.getInstance().getReference("Students");
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        databaseStudents = firebaseDatabase.getReference("Students");
         studentList = new ArrayList<>();
 
         fab = (FloatingActionButton) view.findViewById(R.id.addStudent);
@@ -65,13 +70,16 @@ public class homeDirectory extends Fragment {
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         String name = currentUser.getUid();
-        DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference("Mentor/" + name + "/grade");
-        firebaseDatabase.addValueEventListener(new ValueEventListener() {
+        Log.e("NAME", name);
+
+        DatabaseReference reference = firebaseDatabase.getReference("Mentor/" + name + "/grade");
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final String grade = (dataSnapshot.getValue(String.class));
+                String grade = dataSnapshot.getValue(String.class);
                 Toast.makeText(getContext(), grade, Toast.LENGTH_SHORT).show();
-                databaseStudents.addValueEventListener(new ValueEventListener() {
+                Log.e("CALLED", "called but not doing anything");
+                /*databaseStudents.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         studentList.clear();
@@ -91,12 +99,12 @@ public class homeDirectory extends Fragment {
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
-                });
+                });*/
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.e("NOT CALLED", "not called");
             }
         });
     }

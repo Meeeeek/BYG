@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class homeTabbed extends Fragment {
 
     private WebView webView ;
-    TextView welcomeText;
+    TextView welcomeTextView;
     Button logoutButton;
 
     private FirebaseAuth firebaseAuth;
@@ -29,28 +29,27 @@ public class homeTabbed extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        welcomeText = (TextView) view.findViewById(R.id.welcomeText);
-        welcomeText.setText("Welcome");
+        welcomeTextView = (TextView) view.findViewById(R.id.welcomeText);
+        String welcomeText = "Welcome ";
+
+        if (firebaseAuth.getCurrentUser() != null){
+            welcomeText += firebaseAuth.getCurrentUser().getDisplayName();
+        }
+
+        welcomeTextView.setText(welcomeText);
+
         //welcomeText.setText("Welcome " + firebaseAuth.getCurrentUser().getDisplayName());
 
-        /*
+
         logoutButton = (Button) view.findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 firebaseAuth.signOut();
-                startActivity(new Intent(getActivity(), loginfortheside.class));
+                startActivity(new Intent(getActivity(), drawer.class));
             }
         });
-        */
 
-        webView = (WebView) view.findViewById(R.id.byg);
-        webView.loadUrl("https://www.bethanyyouthgroup.com/");
-
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-
-        webView.setWebViewClient(new WebViewClient());
 
         return view;
 

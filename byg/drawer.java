@@ -1,5 +1,6 @@
 package michaelkim.byg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,16 +13,31 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class drawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawer;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawer);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser() != null){
+            setContentView(R.layout.staff_drawer);
+            drawer = (DrawerLayout) findViewById(R.id.staff_drawer_layout);
+        }
+        else {
+            setContentView(R.layout.activity_drawer);
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -71,7 +87,8 @@ public class drawer extends AppCompatActivity
             case R.id.moveNewsfeed:
                 fragment = new homeTabbed();
                 break;
-            /*case R.id.moveBulletin:
+            /*
+            case R.id.moveBulletin:
                 fragment = new homeBulletin();
                 break;
             case R.id.moveConnect:
@@ -79,19 +96,30 @@ public class drawer extends AppCompatActivity
                 break;
             case R.id.moveMiniGroups:
                 fragment = new homeMiniGroups();
-                break;*/
+                break;
+                */
             case R.id.moveLogs:
                 fragment = new homeLogs();
                 break;
-            /*case R.id.movePrayerRequests:
+            /*
+            case R.id.movePrayerRequests:
                 fragment = new homePR();
-                break;*/
+                break;
+                */
             case R.id.moveDirectory:
                 fragment = new homeDirectory();
                 break;
-            /*case R.id.moveBDChat:
+            /*
+            case R.id.moveBDChat:
                 fragment = new homeBDChat();
-                break;*/
+                break;
+                */
+            case R.id.moveRegister:
+                startActivity(new Intent(getBaseContext(), registrationSelector.class));
+                break;
+            case R.id.moveLogin:
+                startActivity(new Intent(getBaseContext(), loginfortheside.class));
+                break;
         }
 
         if (fragment != null){
@@ -100,7 +128,14 @@ public class drawer extends AppCompatActivity
             ft.commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer;
+
+        if (firebaseAuth.getCurrentUser() != null){
+            drawer = (DrawerLayout) findViewById(R.id.staff_drawer_layout);
+        }
+        else {
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        }
         drawer.closeDrawer(GravityCompat.START);
     }
 
