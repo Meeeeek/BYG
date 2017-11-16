@@ -10,8 +10,6 @@ import com.google.firebase.database.DatabaseReference;
 public class post {
 
     String subject, time, date, content, name;
-    FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference;
 
     public post() {
 

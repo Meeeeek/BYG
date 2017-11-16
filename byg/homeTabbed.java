@@ -30,15 +30,17 @@ public class homeTabbed extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
 
         welcomeTextView = (TextView) view.findViewById(R.id.welcomeText);
+        logoutButton = (Button) view.findViewById(R.id.logoutButton);
         String welcomeText = "Welcome ";
 
         if (firebaseAuth.getCurrentUser() != null){
             welcomeText += firebaseAuth.getCurrentUser().getDisplayName();
         }
+        else{
+            logoutButton.setVisibility(View.INVISIBLE);
+        }
 
         welcomeTextView.setText(welcomeText);
-
-        //welcomeText.setText("Welcome " + firebaseAuth.getCurrentUser().getDisplayName());
 
 
         logoutButton = (Button) view.findViewById(R.id.logoutButton);

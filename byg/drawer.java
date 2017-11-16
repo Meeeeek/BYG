@@ -51,7 +51,14 @@ public class drawer extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer;
+
+        if (firebaseAuth.getCurrentUser() != null){
+            drawer = (DrawerLayout) findViewById(R.id.staff_drawer_layout);
+        }
+        else {
+            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        }
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
@@ -91,21 +98,19 @@ public class drawer extends AppCompatActivity
             case R.id.moveBulletin:
                 fragment = new homeBulletin();
                 break;
-            case R.id.moveConnect:
-                fragment = new homeConnect();
-                break;
             case R.id.moveMiniGroups:
                 fragment = new homeMiniGroups();
                 break;
-                */
+            */
+            case R.id.moveConnect:
+                fragment = new homeConnect();
+                break;
             case R.id.moveLogs:
                 fragment = new homeLogs();
                 break;
-            /*
             case R.id.movePrayerRequests:
                 fragment = new homePR();
                 break;
-                */
             case R.id.moveDirectory:
                 fragment = new homeDirectory();
                 break;
@@ -119,6 +124,9 @@ public class drawer extends AppCompatActivity
                 break;
             case R.id.moveLogin:
                 startActivity(new Intent(getBaseContext(), loginfortheside.class));
+                break;
+            case R.id.giveFeedback:
+                fragment = new homeFeedback();
                 break;
         }
 

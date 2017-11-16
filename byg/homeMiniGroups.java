@@ -22,8 +22,8 @@ public class homeMiniGroups extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_mini_groups, container, false);
-
+        View view = inflater.inflate(R.layout.under_construction, container, false);
+/*
         sampleNames.add("Ministry Group 1");
         sampleDescs.add("No new updates.");
         sampleIndis.add(R.drawable.none);
@@ -37,7 +37,7 @@ public class homeMiniGroups extends Fragment {
         mgList = (ListView) view.findViewById(R.id.mgList);
         mgAdapter mgAdapter = new mgAdapter();
         mgList.setAdapter(mgAdapter);
-
+*/
         return view;
 
     }

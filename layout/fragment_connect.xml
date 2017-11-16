@@ -6,45 +6,67 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/response"
+    android:alpha="0.9"
     tools:context="michaelkim.byg.homeTabbed$PlaceholderFragment">
 
     <CheckBox
-        android:id="@+id/publicCheckBox"
+        android:id="@+id/myMentorsCheckBox"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Public"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/prayerRequestView"
-        android:layout_marginEnd="15dp" />
+        android:layout_alignStart="@+id/PRField"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="76dp"
+        android:text="My Mentor(s)" />
 
     <CheckBox
         android:id="@+id/pastorsCheckBox"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pastors"
-        android:layout_below="@+id/publicCheckBox"
-        android:layout_alignStart="@+id/publicCheckBox"
+        android:layout_below="@+id/myMentorsCheckBox"
+        android:layout_alignStart="@+id/myMentorsCheckBox"
         android:layout_marginTop="23dp" />
 
     <CheckBox
-        android:id="@+id/mentorsCheckBox"
+        android:id="@+id/staffCheckBox"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="43dp"
-        android:text="Mentors"
-        android:layout_alignBaseline="@+id/publicCheckBox"
-        android:layout_alignBottom="@+id/publicCheckBox"
-        android:layout_alignEnd="@+id/PRField" />
+        android:text="All Staff"
+        android:layout_alignBaseline="@+id/myMentorsCheckBox"
+        android:layout_alignBottom="@+id/myMentorsCheckBox"
+        android:layout_toEndOf="@+id/myMentorsCheckBox"
+        android:layout_marginStart="38dp" />
 
     <CheckBox
         android:id="@+id/anonCheckBox"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Anonymous"
         android:layout_alignBaseline="@+id/pastorsCheckBox"
         android:layout_alignBottom="@+id/pastorsCheckBox"
-        android:layout_alignStart="@+id/mentorsCheckBox" />
+        android:layout_alignStart="@+id/staffCheckBox" />
 
     <Button
         android:id="@+id/uploadButton"
@@ -57,9 +79,14 @@
 
     <EditText
         android:id="@+id/PRField"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="11dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:layout_below="@+id/prayerRequestView"
@@ -67,11 +94,57 @@
 
     <TextView
         android:id="@+id/prayerRequestView"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
         android:text="Prayer Request:"
-        android:layout_below="@+id/anonCheckBox"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/nameField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="Name:"
+        android:layout_below="@+id/pastorsCheckBox"
+        android:layout_alignStart="@+id/PRField" />
+
+    <EditText
+        android:id="@+id/nameField"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/nameText"
+        android:layout_alignBottom="@+id/nameText"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignEnd="@+id/prayerRequestView" />
+
+    <Spinner
+        android:id="@+id/gradeSpinner"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/nameText"
+        android:layout_toEndOf="@+id/nameField" />
 
 </RelativeLayout>

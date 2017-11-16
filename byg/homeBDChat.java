@@ -22,8 +22,8 @@ public class homeBDChat extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_bdchat, container, false);
-
+        View view = inflater.inflate(R.layout.under_construction, container, false);
+/*
         sampleNames.add("Retreat Staff");
         sampleGroupOfNames.add("Person 1, Person 2, Person 3");
         sampleImageViews.add(R.drawable.circle);
@@ -37,7 +37,7 @@ public class homeBDChat extends Fragment {
         bdChatList = (ListView) view.findViewById(R.id.bdChatList);
         bdChatAdapter bdChatAdapter = new bdChatAdapter();
         bdChatList.setAdapter(bdChatAdapter);
-
+*/
         return view;
 
     }

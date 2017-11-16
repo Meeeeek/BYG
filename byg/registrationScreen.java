@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class registrationScreen extends AppCompatActivity {
 
-    EditText rNameField, rEmailField, rPasswordField, rPhoneField;
+    EditText rNameField, rEmailField, rPasswordField, rPhoneField, registrationCode;
     Spinner rGradeSpinner;
     Button registerButton;
     TextView regiTextTitle;
@@ -52,6 +53,11 @@ public class registrationScreen extends AppCompatActivity {
         rPasswordField = (EditText) findViewById(R.id.mrPasswordField);
         rPhoneField = (EditText) findViewById(R.id.mrPhoneField);
         rGradeSpinner = (Spinner) findViewById(R.id.mrGradeSpinner);
+        registrationCode = (EditText) findViewById(R.id.rcField);
+
+        String[] grades = {"-", "6B", "6G", "7B", "7G", "8B", "8G", "9B", "9G", "10B", "10G", "11B", "11G", "12B", "12G"};
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, grades);
+        rGradeSpinner.setAdapter(spinnerAdapter);
 
         if (selected.equals("MENTOR")){
             regiTextTitle.setText("MENTOR REGISTRATION");
@@ -75,11 +81,11 @@ public class registrationScreen extends AppCompatActivity {
         String email = rEmailField.getText().toString().trim();
         String password = rPasswordField.getText().toString().trim();
         String phone = rPhoneField.getText().toString().trim();
+        String rc = registrationCode.getText().toString().trim();
 
         if (regiTextTitle.getText().equals("MENTOR REGISTRATION")) {
-            //String grade = rGradeSpinner.getSelectedItem().toString().trim();
-            String grade = "";
-            if (!name.equals("")) {
+            String grade = rGradeSpinner.getSelectedItem().toString().trim();
+            if (!name.equals("") && !email.equals("") && !password.equals("") && !phone.equals("") && !grade.equals("-")) {
                 final mentor newMentor = new mentor(name, email, grade, phone);
                 progressDialog.setMessage("Registering User");
                 progressDialog.show();
@@ -111,7 +117,7 @@ public class registrationScreen extends AppCompatActivity {
                                     } catch (FirebaseAuthWeakPasswordException e) {
                                         Toast.makeText(getApplicationContext(), "Please make a stronger password", Toast.LENGTH_SHORT).show();
                                     } catch (FirebaseAuthInvalidCredentialsException e) {
-                                        Toast.makeText(getApplicationContext(), "Email Address looks a little wrong there", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Email Address has an invalid format", Toast.LENGTH_SHORT).show();
                                     } catch (FirebaseAuthUserCollisionException e) {
                                         Toast.makeText(getApplicationContext(), "Email Address already exists", Toast.LENGTH_SHORT).show();
                                     } catch (Exception e) {
@@ -122,56 +128,59 @@ public class registrationScreen extends AppCompatActivity {
                             }
                         });
             }
-            else {
+            else if (name.equals("") || email.equals("") || password.equals("") || phone.equals("") || grade.equals("-")){
                 Toast.makeText(getApplicationContext(), "Please enter all fields.", Toast.LENGTH_SHORT).show();
             }
         }
         else {
-            if (!name.equals("")) {
-                final staff newStaff = new staff(name, email, phone);
-                progressDialog.setMessage("Registering User");
-                progressDialog.show();
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    databaseMentors.child(firebaseAuth.getCurrentUser().getUid()).setValue(newStaff);
-                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                            .setDisplayName(name)
-                                            .build();
-                                    firebaseAuth.getCurrentUser().updateProfile(profileUpdates)
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Toast.makeText(getApplicationContext(), "Staff Added.", Toast.LENGTH_SHORT).show();
+            if (registrationCode.getText().toString().equals("973694388")) {
+                if (!name.equals("") && !email.equals("") && !password.equals("") && !phone.equals("")) {
+                    final staff newStaff = new staff(name, email, phone);
+                    progressDialog.setMessage("Registering User");
+                    progressDialog.show();
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        databaseStaff.child(firebaseAuth.getCurrentUser().getUid()).setValue(newStaff);
+                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                .setDisplayName(name)
+                                                .build();
+                                        firebaseAuth.getCurrentUser().updateProfile(profileUpdates)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Toast.makeText(getApplicationContext(), "Staff Added.", Toast.LENGTH_SHORT).show();
+                                                        }
                                                     }
-                                                }
-                                            });
-                                    progressDialog.dismiss();
-                                    Intent backToHome = new Intent(getApplicationContext(), loginfortheside.class);
-                                    startActivity(backToHome);
-                                }
-                                else {
-                                    try {
-                                        throw task.getException();
-                                    } catch (FirebaseAuthWeakPasswordException e) {
-                                        Toast.makeText(getApplicationContext(), "Please make a stronger password", Toast.LENGTH_SHORT).show();
-                                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                                        Toast.makeText(getApplicationContext(), "Email Address looks a little wrong there", Toast.LENGTH_SHORT).show();
-                                    } catch (FirebaseAuthUserCollisionException e) {
-                                        Toast.makeText(getApplicationContext(), "Email Address already exists", Toast.LENGTH_SHORT).show();
-                                    } catch (Exception e) {
+                                                });
+                                        progressDialog.dismiss();
+                                        Intent backToHome = new Intent(getApplicationContext(), loginfortheside.class);
+                                        startActivity(backToHome);
+                                    } else {
+                                        try {
+                                            throw task.getException();
+                                        } catch (FirebaseAuthWeakPasswordException e) {
+                                            Toast.makeText(getApplicationContext(), "Please make a stronger password", Toast.LENGTH_SHORT).show();
+                                        } catch (FirebaseAuthInvalidCredentialsException e) {
+                                            Toast.makeText(getApplicationContext(), "Email Address has an invalid format", Toast.LENGTH_SHORT).show();
+                                        } catch (FirebaseAuthUserCollisionException e) {
+                                            Toast.makeText(getApplicationContext(), "Email Address already exists", Toast.LENGTH_SHORT).show();
+                                        } catch (Exception e) {
 
+                                        }
+                                        progressDialog.dismiss();
                                     }
-                                    progressDialog.dismiss();
                                 }
-                            }
-                        });
+                            });
+                } else if (name.equals("") || email.equals("") || password.equals("") || phone.equals("")){
+                    Toast.makeText(getApplicationContext(), "Please enter all fields.", Toast.LENGTH_SHORT).show();
+                }
             }
-            else {
-                Toast.makeText(getApplicationContext(), "Please enter all fields.", Toast.LENGTH_SHORT).show();
+            else{
+                Toast.makeText(getBaseContext(), "Invalid Code", Toast.LENGTH_SHORT).show();
             }
         }
     }

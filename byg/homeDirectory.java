@@ -70,24 +70,32 @@ public class homeDirectory extends Fragment {
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         String name = currentUser.getUid();
-        Log.e("NAME", name);
 
         DatabaseReference reference = firebaseDatabase.getReference("Mentor/" + name + "/grade");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String grade = dataSnapshot.getValue(String.class);
-                Toast.makeText(getContext(), grade, Toast.LENGTH_SHORT).show();
-                Log.e("CALLED", "called but not doing anything");
-                /*databaseStudents.addValueEventListener(new ValueEventListener() {
+                final String grade = dataSnapshot.getValue(String.class);
+                if (grade == null){
+                    Toast.makeText(getContext(), "ALL", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getContext(), grade, Toast.LENGTH_SHORT).show();
+                }
+                databaseStudents.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         studentList.clear();
 
                         for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()){
                             student student = studentSnapshot.getValue(student.class);
-                            if (student.getGrade().equals(grade)) {
+                            if (grade == null){
                                 studentList.add(student);
+                            }
+                            else {
+                                if (student.getGrade().equals(grade)) {
+                                    studentList.add(student);
+                                }
                             }
                         }
 
@@ -99,12 +107,11 @@ public class homeDirectory extends Fragment {
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
-                });*/
+                });
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("NOT CALLED", "not called");
             }
         });
     }

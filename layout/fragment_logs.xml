@@ -2,12 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/logs"
+    android:alpha="0.9"
     tools:context="michaelkim.byg.homeLogs">
 
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
         android:id="@+id/logAttendance"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="95dp"
@@ -17,6 +24,11 @@
 
     <EditText
         android:id="@+id/logAttendanceField"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
@@ -28,6 +40,11 @@
 
     <TextView
         android:id="@+id/logMissing"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/logAttendance"
@@ -37,6 +54,11 @@
 
     <EditText
         android:id="@+id/logMissingField"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logMissing"
@@ -46,6 +68,11 @@
 
     <TextView
         android:id="@+id/logGrade"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Grade"
@@ -56,6 +83,11 @@
 
     <Spinner
         android:id="@+id/gradeSpinner"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/logGrade"
@@ -63,6 +95,11 @@
 
     <TextView
         android:id="@+id/logDay"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/logMissingField"
@@ -72,6 +109,11 @@
 
     <EditText
         android:id="@+id/logDayField"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/logDay"
@@ -81,6 +123,11 @@
 
     <TextView
         android:id="@+id/logPR"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/logDayField"
@@ -90,6 +137,11 @@
 
     <EditText
         android:id="@+id/logPRField"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/logPR"
@@ -99,6 +151,11 @@
 
     <TextView
         android:id="@+id/logComments"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/logPRField"
@@ -108,6 +165,11 @@
 
     <EditText
         android:id="@+id/logCommentsField"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -117,6 +179,11 @@
 
     <Button
         android:id="@+id/submitLog"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

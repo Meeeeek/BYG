@@ -33,8 +33,8 @@ public class homeBulletin extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_bulletin, container, false);
-
+        View view = inflater.inflate(R.layout.under_construction, container, false);
+/*
         databasePosts = new ArrayList<>();
         staffPosts = FirebaseDatabase.getInstance().getReference("Staff Posts");
 
@@ -64,11 +64,11 @@ public class homeBulletin extends Fragment {
                 startActivity(addPost);
             }
         });
-
+*/
         return view;
 
     }
-
+/*
     @Override
     public void onStart() {
         super.onStart();
@@ -95,7 +95,7 @@ public class homeBulletin extends Fragment {
             }
         });
     }
-
+*/
     private class bulletinAdapter extends BaseAdapter {
 
         @Override

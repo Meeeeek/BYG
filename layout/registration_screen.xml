@@ -21,7 +21,7 @@
         android:layout_below="@+id/regiTextTitle"
         android:layout_marginStart="45dp"
         android:layout_marginTop="15dp"
-        android:paddingBottom="50dp"
+        android:paddingBottom="40dp"
         android:text="Name :"
         android:textSize="16sp" />
 
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/mrName"
         android:layout_below="@+id/mrName"
-        android:paddingBottom="50dp"
+        android:paddingBottom="40dp"
         android:text="Email :"
         android:textSize="16sp" />
 
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/mrEmail"
         android:layout_below="@+id/mrEmail"
-        android:paddingBottom="50dp"
+        android:paddingBottom="40dp"
         android:text="Password :"
         android:textSize="16sp" />
 
@@ -52,7 +52,9 @@
         android:layout_alignStart="@+id/mrPhone"
         android:layout_below="@+id/mrPhone"
         android:text="Grade :"
-        android:textSize="16sp" />
+        android:paddingBottom="40dp"
+        android:textSize="16sp"
+        android:layout_alignEnd="@+id/mrName" />
 
     <TextView
         android:id="@+id/mrPhone"
@@ -60,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/mrPassword"
         android:layout_below="@+id/mrPassword"
-        android:paddingBottom="50dp"
+        android:paddingBottom="40dp"
         android:text="Phone Number :"
         android:textSize="16sp" />
 
@@ -71,9 +73,9 @@
         android:onClick="toHome"
         android:text="REGISTER"
         android:textSize="10sp"
-        android:layout_marginBottom="68dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
 
     <EditText
         android:id="@+id/mrNameField"
@@ -83,8 +85,7 @@
         android:inputType="textPersonName"
         android:paddingTop="5dp"
         android:layout_alignTop="@+id/mrName"
-        android:layout_alignStart="@+id/regButton"
-        android:layout_marginStart="24dp" />
+        android:layout_alignStart="@+id/mrEmailField" />
 
     <EditText
         android:id="@+id/mrEmailField"
@@ -93,7 +94,7 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:layout_below="@+id/mrName"
-        android:layout_alignStart="@+id/mrNameField" />
+        android:layout_alignStart="@+id/mrPasswordField" />
 
     <EditText
         android:id="@+id/mrPasswordField"
@@ -102,16 +103,15 @@
         android:ems="10"
         android:inputType="textPassword"
         android:layout_alignTop="@+id/mrPassword"
-        android:layout_alignStart="@+id/mrEmailField" />
+        android:layout_toEndOf="@+id/mrPhone" />
 
     <Spinner
         android:id="@+id/mrGradeSpinner"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:layout_marginStart="11dp"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/mrPhoneField"
-        android:layout_alignStart="@+id/mrPhoneField" />
+        android:layout_below="@+id/mrPhone"
+        android:layout_toEndOf="@+id/registrationCode" />
 
     <EditText
         android:id="@+id/mrPhoneField"
@@ -120,6 +120,25 @@
         android:ems="10"
         android:inputType="phone"
         android:layout_alignTop="@+id/mrPhone"
-        android:layout_alignStart="@+id/mrPasswordField" />
+        android:layout_toEndOf="@+id/mrPhone" />
+
+    <TextView
+        android:id="@+id/registrationCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mrGrade"
+        android:layout_below="@+id/mrGrade"
+        android:text="Registration Code :"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/rcField"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_alignBaseline="@+id/registrationCode"
+        android:layout_alignBottom="@+id/registrationCode"
+        android:layout_alignStart="@+id/mrGradeSpinner" />
 
 </RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/pr"
+    android:alpha="0.9">
+
+    <TextView
+        android:id="@+id/prName"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="45dp"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/prTimeDate"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Time/Date"
+        android:layout_below="@+id/prName"
+        android:layout_alignStart="@+id/prName" />
+
+    <TextView
+        android:id="@+id/prGrade"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/prTimeDate"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="58dp"
+        android:text="Grade" />
+
+    <TextView
+        android:id="@+id/prDetails"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/prTimeDate"
+        android:layout_below="@+id/prTimeDate"
+        android:layout_marginTop="26dp"
+        android:text="Details" />
+
+</RelativeLayout>
