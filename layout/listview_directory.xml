@@ -4,6 +4,11 @@
 
     <TextView
         android:id="@+id/studentGrade"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="199dp"
@@ -12,6 +17,11 @@
 
     <TextView
         android:id="@+id/studentBirthday"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="191dp"
@@ -20,6 +30,11 @@
 
     <TextView
         android:id="@+id/studentPhone"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_x="24dp"
@@ -28,6 +43,11 @@
 
     <TextView
         android:id="@+id/studentAddress"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="24dp"
@@ -38,6 +58,11 @@
 
     <TextView
         android:id="@+id/studentName"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="24dp"

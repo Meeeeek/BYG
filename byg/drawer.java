@@ -114,6 +114,9 @@ public class drawer extends AppCompatActivity
             case R.id.moveDirectory:
                 fragment = new homeDirectory();
                 break;
+            case R.id.moveMentorsNote:
+                fragment = new homeMentorsNote();
+                break;
             /*
             case R.id.moveBDChat:
                 fragment = new homeBDChat();

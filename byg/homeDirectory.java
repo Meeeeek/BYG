@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +30,8 @@ import java.util.ArrayList;
 
 public class homeDirectory extends Fragment {
 
+    Bundle sIS;
+
     ListView studentDirectory;
     ArrayList<student> studentList;
     directoryAdapter directoryAdapter;
@@ -38,7 +43,9 @@ public class homeDirectory extends Fragment {
     Button editStudent, deleteStudent;
     FloatingActionButton fab;
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
+
+        sIS = savedInstanceState;
 
         View view = inflater.inflate(R.layout.fragment_directory, container, false);
 
@@ -52,8 +59,7 @@ public class homeDirectory extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addStudent = new Intent(getContext(), addStudent.class);
-                startActivity(addStudent);
+                addEditStudent("Add", sIS, -1);
             }
         });
 
@@ -62,6 +68,81 @@ public class homeDirectory extends Fragment {
 
         return view;
 
+    }
+
+    private void addEditStudent(final String action, Bundle savedInstanceState, int position){
+        AlertDialog.Builder addStudentDialog = new AlertDialog.Builder(getContext());
+        View addStudentDialogView = getLayoutInflater(savedInstanceState).inflate(R.layout.add_student, null);
+        addStudentDialog.setView(addStudentDialogView);
+
+        AlertDialog dialog = addStudentDialog.create();
+        dialog.show();
+
+        // Widget declaration for the add student dialog.
+        final EditText sName, sBirth, sPhone, sAddress, sCity, sState, sZip;
+        Button addStudent;
+
+        // Widget instantiation.
+        sName = (EditText) addStudentDialogView.findViewById(R.id.studentName);
+        sBirth = (EditText) addStudentDialogView.findViewById(R.id.studentBirthday);
+        sPhone = (EditText) addStudentDialogView.findViewById(R.id.studentPhone);
+        sAddress = (EditText) addStudentDialogView.findViewById(R.id.studentAddress);
+        sCity = (EditText) addStudentDialogView.findViewById(R.id.studentCity);
+        sState = (EditText) addStudentDialogView.findViewById(R.id.studentState);
+        sZip = (EditText) addStudentDialogView.findViewById(R.id.studentZip);
+        addStudent = (Button) addStudentDialogView.findViewById(R.id.addStudentButton);
+
+        if (action.equals("Edit")){
+            addStudent.setText("EDIT");
+
+            student currStudent = studentList.get(position);
+
+            sName.setText(currStudent.name);
+            sBirth.setText(currStudent.birthday);
+            sPhone.setText(currStudent.phone);
+            sAddress.setText(currStudent.address);
+            sCity.setText(currStudent.city);
+            sState.setText(currStudent.state);
+            sZip.setText(currStudent.zip);
+        }
+
+        databaseStudents = FirebaseDatabase.getInstance().getReference("Students");
+
+        addStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+                String name = currentUser.getUid();
+                DatabaseReference firebaseDatabase = FirebaseDatabase.getInstance().getReference("Mentor/" + name + "/grade");
+                firebaseDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        final String grade = (dataSnapshot.getValue(String.class));
+                        String name = sName.getText().toString().trim();
+                        String birthday = sBirth.getText().toString().trim();
+                        String phone = sPhone.getText().toString().trim();
+                        String address = sAddress.getText().toString().trim();
+                        String city = sCity.getText().toString().trim();
+                        String state = sState.getText().toString().trim();
+                        String zip = sZip.getText().toString().trim();
+
+                        if (!TextUtils.isEmpty(name)){
+                            student newStudent = new student(name, grade, birthday, phone, address, city, state, zip);
+                            databaseStudents.child(name).setValue(newStudent);
+                            Toast.makeText(getContext(), "Student " + action + "ed.", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(getContext(), "Please enter a name.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -157,16 +238,7 @@ public class homeDirectory extends Fragment {
             editStudent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    student edittingStudent = studentList.get(i);
-                    Intent editStudent = new Intent(getContext(), addStudent.class);
-                    editStudent.putExtra("studentName", edittingStudent.getName());
-                    editStudent.putExtra("studentBirthday", edittingStudent.getBirthday());
-                    editStudent.putExtra("studentPhone", edittingStudent.getPhone());
-                    editStudent.putExtra("studentAddress", edittingStudent.getAddress());
-                    editStudent.putExtra("studentCity", edittingStudent.getCity());
-                    editStudent.putExtra("studentState", edittingStudent.getState());
-                    editStudent.putExtra("studentZip", edittingStudent.getZip());
-                    startActivity(editStudent);
+                    addEditStudent("Edit", sIS, i);
                 }
             });
 

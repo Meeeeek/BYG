@@ -72,13 +72,16 @@ public class homePR extends Fragment {
     public void onStart() {
         super.onStart();
 
+        // Get the user's ID so we can look at the currently logged in user's grade.
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         String name = currentUser.getUid();
 
+        // Get the database reference for the currently logged in user's grade.
         DatabaseReference reference = firebaseDatabase.getReference("Mentor/" + name + "/grade");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                // Check if the user is currently a pastor or a teacher.
                 final String grade = dataSnapshot.getValue(String.class);
                 if (grade == null){
                     Toast.makeText(getContext(), "PASTOR", Toast.LENGTH_SHORT).show();
@@ -90,10 +93,12 @@ public class homePR extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         requestList.clear();
-
+                        // Look through the list of prayer requests.
                         for (DataSnapshot prSnapshot : dataSnapshot.getChildren()){
                             prayerRequest prayerRequest = prSnapshot.getValue(prayerRequest.class);
                             String prGrade = prayerRequest.grade;
+
+                            // Get the prayer request's grade.
                             boolean forPastors = false;
                             if (prGrade.length() > 1){
                                 if (prGrade.charAt(prGrade.length()-1) == 'P'){

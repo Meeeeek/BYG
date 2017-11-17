@@ -81,5 +81,6 @@
         android:layout_below="@+id/studentZip"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
+        android:layout_marginBottom="20dp"
         android:text="ADD" />
 </RelativeLayout>

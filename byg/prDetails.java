@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class prDetails extends AppCompatActivity {
 
@@ -21,8 +22,17 @@ public class prDetails extends AppCompatActivity {
 
         Bundle strings = getIntent().getExtras();
 
+        String grade = strings.getString("postGrade");
+        if (grade.equals("A")){
+            grade = "";
+        }
+        else if (grade.charAt(grade.length()-1) == 'P'){
+            grade = grade.substring(0, grade.length()-1);
+            Toast.makeText(getBaseContext(), grade, Toast.LENGTH_SHORT).show();
+        }
+
         postName.setText(strings.getString("postName"));
-        postGrade.setText(strings.getString("postGrade"));
+        postGrade.setText(grade);
         postText.setText(strings.getString("postDetails"));
         postTimeAndDate.setText(strings.getString("postDate") + " " + strings.getString("postTime"));
 
