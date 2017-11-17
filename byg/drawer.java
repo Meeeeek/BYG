@@ -125,9 +125,6 @@ public class drawer extends AppCompatActivity
             case R.id.moveRegister:
                 startActivity(new Intent(getBaseContext(), registrationSelector.class));
                 break;
-            case R.id.moveLogin:
-                startActivity(new Intent(getBaseContext(), loginfortheside.class));
-                break;
             case R.id.giveFeedback:
                 fragment = new homeFeedback();
                 break;

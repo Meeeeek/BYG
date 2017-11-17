@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +38,7 @@ public class homePR extends Fragment {
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_pr, container, false);
 
@@ -53,14 +54,35 @@ public class homePR extends Fragment {
         prList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent details = new Intent(getContext(), prDetails.class);
-                details.putExtra("postTime", requestList.get(i).time);
-                details.putExtra("postDate", requestList.get(i).date);
-                details.putExtra("postName", requestList.get(i).name);
-                details.putExtra("postGrade", requestList.get(i).grade);
-                details.putExtra("postDetails", requestList.get(i).prayerRequest);
+                AlertDialog.Builder prDialog = new AlertDialog.Builder(getContext());
+                View prView = getLayoutInflater(savedInstanceState).inflate(R.layout.pr_layout_details, null);
+                prDialog.setView(prView);
 
-                startActivity(details);
+                AlertDialog dialog = prDialog.create();
+                dialog.show();
+
+                TextView postName, postGrade, postText, postTimeAndDate;
+
+                postName = (TextView) prView.findViewById(R.id.prName);
+                postGrade = (TextView) prView.findViewById(R.id.prGrade);
+                postText = (TextView) prView.findViewById(R.id.prDetails);
+                postTimeAndDate = (TextView) prView.findViewById(R.id.prTimeDate);
+
+                // Set dialog's textviews to the selected prayer request.
+                postName.setText(requestList.get(i).name);
+                postText.setText(requestList.get(i).prayerRequest);
+                postTimeAndDate.setText(requestList.get(i).date);
+
+                // Change the grade correspondingly so it only shows up as a grade, rather than including 'P'
+                String grade = requestList.get(i).grade;
+                if (grade.equals("A")){
+                    grade = "";
+                }
+                else if (grade.charAt(grade.length()-1) == 'P'){
+                    grade = grade.substring(0, grade.length()-1);
+                }
+
+                postGrade.setText(grade);
             }
         });
 
