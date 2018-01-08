@@ -6,7 +6,7 @@
         android:id="@+id/studentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
@@ -18,6 +18,7 @@
         android:id="@+id/studentBirthday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="Birthday"
         android:inputType="date"
@@ -28,6 +29,7 @@
         android:id="@+id/studentPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="Phone Number"
         android:inputType="phone"
@@ -38,6 +40,7 @@
         android:id="@+id/studentAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="Address"
         android:inputType="textPersonName"
@@ -48,6 +51,7 @@
         android:id="@+id/studentCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="City"
         android:inputType="textPersonName"
@@ -58,29 +62,20 @@
         android:id="@+id/studentState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="State"
         android:inputType="textPersonName"
         android:layout_below="@+id/studentCity"
         android:layout_alignStart="@+id/studentCity" />
 
-    <EditText
-        android:id="@+id/studentZip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Zip"
-        android:inputType="number"
-        android:layout_below="@+id/studentState"
-        android:layout_alignStart="@+id/studentState" />
-
     <Button
         android:id="@+id/addStudentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/studentZip"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="20dp"
-        android:text="ADD" />
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="30dp"
+        android:text="ADD"
+        android:layout_below="@+id/studentState"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

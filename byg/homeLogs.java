@@ -8,43 +8,49 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class homeLogs extends Fragment {
 
+    String grade;
+
     // Widget declaration
     Button submitLog;
+    EditText missingStudents, highlights, smallGroupGoal, solutions, meetup, prayerRequests;
 
-    // Widget fields that need to be addressed.
-    Spinner gradeSpinner;
-    EditText logPRField, logCommentsField, logDayField, logMissingField, logAttendanceField;
+    // Database declarations
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_logs, container, false);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
         // Widget Instantiation.
         submitLog = (Button) view.findViewById(R.id.submitLog);
-        gradeSpinner = (Spinner) view.findViewById(R.id.gradeSpinner);
 
-        logPRField = (EditText) view.findViewById(R.id.logPRField);
-        logCommentsField = (EditText) view.findViewById(R.id.logCommentsField);
-        logDayField = (EditText) view.findViewById(R.id.logDayField);
-        logMissingField = (EditText) view.findViewById(R.id.logMissingField);
-        logAttendanceField = (EditText) view.findViewById(R.id.logAttendanceField);
-
-        // Spinner Value Instantiation.
-        String[] grades = {"6B", "6G", "7B", "7G", "8B", "8G", "9B", "9G", "10B", "10G", "11B", "11G", "12B", "12G"};
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, grades);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        gradeSpinner.setAdapter(spinnerAdapter);
+        missingStudents = (EditText) view.findViewById(R.id.missingStudents);
+        highlights = (EditText) view.findViewById(R.id.highlights);
+        smallGroupGoal = (EditText) view.findViewById(R.id.smallGroupGoal);
+        solutions = (EditText) view.findViewById(R.id.improveSGTime);
+        meetup = (EditText) view.findViewById(R.id.meetup);
+        prayerRequests = (EditText) view.findViewById(R.id.prayerRequests);
 
         // Submit Button Usage.
         submitLog.setOnClickListener(new View.OnClickListener() {
@@ -57,14 +63,15 @@ public class homeLogs extends Fragment {
                 emailIntent.setType("text/plain");
 
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, emailAddress);
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "LOG for " + gradeSpinner.getSelectedItem() + " (" + getDate() + ")");
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "LOG for " + grade + " (" + getDate() + ")");
                 emailIntent.putExtra(Intent.EXTRA_TEXT,
-                        "Attendance : " + logAttendanceField.getText() + "\n\n" +
-                        "Missing Students and Reasons : \n " + logMissingField.getText() + "\n\n" +
-                        "What Did You Do Today? : \n " + logDayField.getText() + "\n\n" +
-                        "Prayer Requests : \n " + logPRField.getText() + "\n\n" +
-                        "Extra Comments : \n " + logCommentsField.getText());
-
+                        "Missing Students : " + missingStudents.getText().toString().trim() + "\n\n" +
+                        "Highlights : " + highlights.getText().toString().trim() + "\n\n" +
+                        "Did you meet the small group goal of the day? Why or why not? : " + smallGroupGoal.getText().toString().trim() + "\n\n" +
+                        "Solutions on how to improve small group time : " + solutions.getText().toString().trim() + "\n\n" +
+                        "Who did you meet up with this week? : " +  meetup.getText().toString().trim() + "\n\n" +
+                        "Prayer Requests : " + prayerRequests.getText().toString().trim()
+                );
                 try {
                     startActivity(Intent.createChooser(emailIntent, "Send mail..."));
                     Toast.makeText(getActivity(), "Preparing Email...", Toast.LENGTH_SHORT).show();
@@ -77,6 +84,31 @@ public class homeLogs extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        String name = currentUser.getUid();
+
+        DatabaseReference reference = firebaseDatabase.getReference("Mentor/" + name + "/grade");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                grade = dataSnapshot.getValue(String.class);
+                if (grade == null) {
+                    Toast.makeText(getContext(), "ALL", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), grade, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     private String getDate(){

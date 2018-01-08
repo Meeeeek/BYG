@@ -5,41 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/loginButton"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:background="#a7e9e9"
-        android:gravity="center"
-        android:onClick="toHome"
-        android:text="Login"
-        android:layout_marginBottom="25dp"
-        android:textAllCaps="true"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/passwordField"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
-
     <EditText
         android:id="@+id/usernameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/passwordField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/usernameField"
-        android:layout_below="@+id/usernameField"
-        android:layout_marginTop="17dp"
+        android:layout_alignTop="@+id/usernameField"
+        android:layout_marginTop="61dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/login" />
+
+
 </RelativeLayout>

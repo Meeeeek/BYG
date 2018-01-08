@@ -89,7 +89,6 @@ public class homeDirectory extends Fragment {
         sAddress = (EditText) addStudentDialogView.findViewById(R.id.studentAddress);
         sCity = (EditText) addStudentDialogView.findViewById(R.id.studentCity);
         sState = (EditText) addStudentDialogView.findViewById(R.id.studentState);
-        sZip = (EditText) addStudentDialogView.findViewById(R.id.studentZip);
         addStudent = (Button) addStudentDialogView.findViewById(R.id.addStudentButton);
 
         if (action.equals("Edit")){
@@ -103,7 +102,6 @@ public class homeDirectory extends Fragment {
             sAddress.setText(currStudent.address);
             sCity.setText(currStudent.city);
             sState.setText(currStudent.state);
-            sZip.setText(currStudent.zip);
         }
 
         databaseStudents = FirebaseDatabase.getInstance().getReference("Students");
@@ -124,10 +122,9 @@ public class homeDirectory extends Fragment {
                         String address = sAddress.getText().toString().trim();
                         String city = sCity.getText().toString().trim();
                         String state = sState.getText().toString().trim();
-                        String zip = sZip.getText().toString().trim();
 
                         if (!TextUtils.isEmpty(name)){
-                            student newStudent = new student(name, grade, birthday, phone, address, city, state, zip);
+                            student newStudent = new student(name, grade, birthday, phone, address, city, state);
                             databaseStudents.child(name).setValue(newStudent);
                             Toast.makeText(getContext(), "Student " + action + "ed.", Toast.LENGTH_SHORT).show();
                         }
@@ -229,7 +226,7 @@ public class homeDirectory extends Fragment {
             name.setText(student.getName());
             grade.setText(student.getGrade());
             birthday.setText(student.getBirthday());
-            address.setText(student.getAddress() + ", " + student.getCity() + ", " + student.getState() + ", " + student.getZip());
+            address.setText(student.getAddress() + ", " + student.getCity() + ", " + student.getState());
             phone.setText(student.getPhone());
 
             editStudent = (Button) view.findViewById(R.id.editStudent);

@@ -16,7 +16,7 @@
         android:shadowRadius="2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="75dp"
         android:gravity="center"
         android:text="If there's something that this app could do better, feel free to send your feedback below! :)"
         android:layout_alignParentTop="true"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/feedbackText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:inputType="textMultiLine" />
 
@@ -42,9 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        android:layout_marginTop="150dp"
-        android:layout_below="@+id/feedbackField"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -55,9 +55,9 @@
         android:shadowRadius="2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/submitFeedback"
-        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="32dp"
-        android:text="* It's completely anonymous so be as honest as possible!" />
+        android:layout_marginBottom="30dp"
+        android:text="* It's completely anonymous so be as honest as possible!"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/feedbackField" />
 </RelativeLayout>

@@ -526,7 +526,7 @@ public class registrationSelector extends AppCompatActivity {
         final AlertDialog dialog = loginDialog.create();
         dialog.show();
 
-        TextView loginButton;
+        Button loginButton;
 
         final EditText username, password;
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -534,7 +534,7 @@ public class registrationSelector extends AppCompatActivity {
 
         username = (EditText) loginView.findViewById(R.id.usernameField);
         password = (EditText) loginView.findViewById(R.id.passwordField);
-        loginButton = (TextView) loginView.findViewById(R.id.loginButton);
+        loginButton = (Button) loginView.findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

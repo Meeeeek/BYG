@@ -6,13 +6,25 @@
         android:id="@+id/mrName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="75dp"
         android:paddingBottom="40dp"
         android:text="Name :"
         android:textSize="16sp"
-        android:layout_marginEnd="27dp"
+        android:layout_marginStart="40dp"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/mrNameField" />
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/mrNameField"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingTop="5dp"
+        android:layout_alignTop="@+id/mrName"
+        android:layout_alignStart="@+id/regButton"
+        android:layout_marginStart="20dp" />
 
     <TextView
         android:id="@+id/mrEmail"
@@ -24,6 +36,15 @@
         android:text="Email :"
         android:textSize="16sp" />
 
+    <EditText
+        android:id="@+id/mrEmailField"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_below="@+id/mrName"
+        android:layout_alignStart="@+id/mrNameField" />
+
     <TextView
         android:id="@+id/mrPassword"
         android:layout_width="wrap_content"
@@ -33,6 +54,34 @@
         android:paddingBottom="40dp"
         android:text="Password :"
         android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/mrPasswordField"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mrEmailField"
+        android:layout_alignTop="@+id/mrPassword"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/mrPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mrPassword"
+        android:layout_below="@+id/mrPassword"
+        android:paddingBottom="40dp"
+        android:text="Phone # :"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/mrPhoneField"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/mrPasswordField"
+        android:layout_alignTop="@+id/mrPhone"
+        android:ems="10"
+        android:inputType="phone" />
 
     <TextView
         android:id="@+id/mrGrade"
@@ -45,15 +94,13 @@
         android:textSize="16sp"
         android:layout_alignEnd="@+id/mrName" />
 
-    <TextView
-        android:id="@+id/mrPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/mrPassword"
-        android:layout_below="@+id/mrPassword"
-        android:paddingBottom="40dp"
-        android:text="Phone # :"
-        android:textSize="16sp" />
+    <Spinner
+        android:id="@+id/mrGradeSpinner"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_below="@+id/mrPhone"
+        android:layout_alignEnd="@+id/mrPhoneField" />
 
     <Button
         android:id="@+id/regButton"
@@ -62,55 +109,8 @@
         android:onClick="toHome"
         android:text="REGISTER"
         android:textSize="10sp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="15dp"
-        android:layout_below="@+id/mrGrade"
+        android:layout_marginBottom="75dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:id="@+id/mrNameField"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingTop="5dp"
-        android:layout_marginStart="14dp"
-        android:layout_alignTop="@+id/mrName"
-        android:layout_alignStart="@+id/regButton" />
-
-    <EditText
-        android:id="@+id/mrEmailField"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:layout_below="@+id/mrName"
-        android:layout_alignStart="@+id/mrNameField" />
-
-    <EditText
-        android:id="@+id/mrPasswordField"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:layout_alignTop="@+id/mrPassword"
-        android:layout_alignStart="@+id/mrEmailField" />
-
-    <Spinner
-        android:id="@+id/mrGradeSpinner"
-        android:layout_width="125dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="47dp"
-        android:layout_below="@+id/mrPhone"
-        android:layout_alignStart="@+id/regButton" />
-
-    <EditText
-        android:id="@+id/mrPhoneField"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        android:layout_alignTop="@+id/mrPhone"
-        android:layout_alignStart="@+id/mrPasswordField" />
 
 </RelativeLayout>

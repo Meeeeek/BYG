@@ -6,13 +6,13 @@ package michaelkim.byg;
 
 public class student {
 
-    String name, grade, birthday, phone, address, city, state, zip;
+    String name, grade, birthday, phone, address, city, state;
 
     public student() {
 
     }
 
-    public student(String n, String g, String b, String p, String a, String c, String s, String z){
+    public student(String n, String g, String b, String p, String a, String c, String s){
         this.name = n;
         this.grade = g;
         this.birthday = b;
@@ -20,7 +20,6 @@ public class student {
         this.address = a;
         this.city = c;
         this.state = s;
-        this.zip = z;
     }
 
     public String getName() {
@@ -77,13 +76,5 @@ public class student {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
     }
 }
