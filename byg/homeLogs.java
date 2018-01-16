@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +31,9 @@ public class homeLogs extends Fragment {
 
     // Widget declaration
     Button submitLog;
+    TextView missingStudentsText, highlightsText, smallGroupGoalText, solutionsText, meetupText, prayerRequestsText;
     EditText missingStudents, highlights, smallGroupGoal, solutions, meetup, prayerRequests;
+    ImageView construction;
 
     // Database declarations
     FirebaseAuth firebaseAuth;
@@ -45,12 +49,25 @@ public class homeLogs extends Fragment {
         // Widget Instantiation.
         submitLog = (Button) view.findViewById(R.id.submitLog);
 
+        missingStudentsText = (TextView) view.findViewById(R.id.textView6);
         missingStudents = (EditText) view.findViewById(R.id.missingStudents);
+
+        highlightsText = (TextView) view.findViewById(R.id.textView7);
         highlights = (EditText) view.findViewById(R.id.highlights);
+
+        smallGroupGoalText = (TextView) view.findViewById(R.id.textView8);
         smallGroupGoal = (EditText) view.findViewById(R.id.smallGroupGoal);
+
+        solutionsText = (TextView) view.findViewById(R.id.textView9);
         solutions = (EditText) view.findViewById(R.id.improveSGTime);
+
+        meetupText = (TextView) view.findViewById(R.id.textView10);
         meetup = (EditText) view.findViewById(R.id.meetup);
+
+        prayerRequestsText = (TextView) view.findViewById(R.id.textView11);
         prayerRequests = (EditText) view.findViewById(R.id.prayerRequests);
+
+        construction = (ImageView) view.findViewById(R.id.construction);
 
         // Submit Button Usage.
         submitLog.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +116,10 @@ public class homeLogs extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 grade = dataSnapshot.getValue(String.class);
                 if (grade == null) {
+                    hideAllViews();
+                    highlightsText.setText("May change this format to show who has completed the logs at a later date.");
+                    construction.setVisibility(View.VISIBLE);
+
                     Toast.makeText(getContext(), "ALL", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), grade, Toast.LENGTH_SHORT).show();
@@ -118,6 +139,21 @@ public class homeLogs extends Fragment {
         String todaysDate = df.format(c.getTime());
 
         return todaysDate;
+    }
+
+    private void hideAllViews () {
+        missingStudents.setVisibility(View.INVISIBLE);
+        missingStudentsText.setVisibility(View.INVISIBLE);
+        highlights.setVisibility(View.INVISIBLE);
+        smallGroupGoal.setVisibility(View.INVISIBLE);
+        smallGroupGoalText.setVisibility(View.INVISIBLE);
+        solutions.setVisibility(View.INVISIBLE);
+        solutionsText.setVisibility(View.INVISIBLE);
+        meetup.setVisibility(View.INVISIBLE);
+        meetupText.setVisibility(View.INVISIBLE);
+        prayerRequests.setVisibility(View.INVISIBLE);
+        prayerRequestsText.setVisibility(View.INVISIBLE);
+        submitLog.setVisibility(View.INVISIBLE);
     }
 
 }

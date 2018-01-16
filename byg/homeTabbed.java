@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -33,13 +35,14 @@ public class homeTabbed extends Fragment {
     TextView welcomeTextView;
     Button logoutButton;
     ListView announcementList;
-    ArrayList<String> announcements = new ArrayList<>();
+    ArrayList<announcement> announcements = new ArrayList<>();
+    ArrayList<String> announcementTitles = new ArrayList<>();
     ArrayAdapter<String> announcementAdapter;
 
     FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -70,8 +73,35 @@ public class homeTabbed extends Fragment {
         });
 
         announcementList = (ListView) view.findViewById(R.id.announcementsList);
-        announcementAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, announcements);
+        announcementAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, announcementTitles);
         announcementList.setAdapter(announcementAdapter);
+
+        announcementList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AlertDialog.Builder prDialog = new AlertDialog.Builder(getContext());
+                View prView = getLayoutInflater(savedInstanceState).inflate(R.layout.pr_layout_details, null);
+                prDialog.setView(prView);
+
+                AlertDialog dialog = prDialog.create();
+                dialog.show();
+
+                TextView announcementName, gradeText, announcementDetails, announcementPerson;
+
+                announcementName = (TextView) prView.findViewById(R.id.prName);
+                gradeText = (TextView) prView.findViewById(R.id.prGrade);
+                announcementDetails = (TextView) prView.findViewById(R.id.prDetails);
+                announcementPerson = (TextView) prView.findViewById(R.id.prTimeDate);
+
+                // Set dialog's textviews to the selected announcement.
+                announcementName.setText(announcements.get(i).announcement);
+                announcementDetails.setText(announcements.get(i).details);
+
+                // Hide unnecessary values.
+                announcementPerson.setVisibility(View.INVISIBLE);
+                gradeText.setVisibility(View.INVISIBLE);
+            }
+        });
 
         return view;
 
@@ -92,12 +122,14 @@ public class homeTabbed extends Fragment {
                 for (DataSnapshot announcementSnapshot : dataSnapshot.getChildren()){
                     announcement currAnnouncement = announcementSnapshot.getValue(announcement.class);
                     if (firebaseAuth.getCurrentUser() != null && currAnnouncement.person.equals("Staff")){
-                        announcements.add(currAnnouncement.announcement);
+                        announcements.add(currAnnouncement);
+                        announcementTitles.add(currAnnouncement.announcement);
                     }
                     else if (currAnnouncement.person.equals("Student")){
-                        announcements.add(currAnnouncement.announcement);
+                        announcements.add(currAnnouncement);
+                        announcementTitles.add(currAnnouncement.announcement);
                     }
-                    announcementAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, announcements);
+                    announcementAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, announcementTitles);
                     announcementList.setAdapter(announcementAdapter);
                 }
             }

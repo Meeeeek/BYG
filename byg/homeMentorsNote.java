@@ -50,21 +50,28 @@ public class homeMentorsNote extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String grade = dataSnapshot.getValue(String.class);
                 Toast.makeText(getContext(), grade, Toast.LENGTH_SHORT).show();
+
+                if (grade == null){
+                    mentorsNote.setText("Currently not applicable to Pastoral Staff. May change in the future.");
+                }
+
                 // Find the corresponding note.
                 // Get the database reference for all the mentor's notes.
-                DatabaseReference noteReference = firebaseDatabase.getReference("Mentors Notes/" + grade);
-                noteReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String foundNote = dataSnapshot.getValue(String.class);
-                        mentorsNote.setText(foundNote);
-                    }
+                else {
+                    DatabaseReference noteReference = firebaseDatabase.getReference("Mentors Notes/" + grade);
+                    noteReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String foundNote = dataSnapshot.getValue(String.class);
+                            mentorsNote.setText(foundNote);
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }
 
             @Override

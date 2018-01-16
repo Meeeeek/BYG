@@ -6,14 +6,15 @@ package michaelkim.byg;
 
 public class announcement {
 
-    String announcement, person;
+    String announcement, person, details;
 
     public announcement() {
     }
 
-    public announcement(String a, String p) {
+    public announcement(String a, String p, String d) {
         this.announcement = a;
         this.person = p;
+        this.details = d;
     }
 
     public String getAnnouncement() {
@@ -30,5 +31,13 @@ public class announcement {
 
     public void setPerson(String person) {
         this.person = person;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

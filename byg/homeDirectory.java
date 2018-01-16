@@ -40,6 +40,8 @@ public class homeDirectory extends Fragment {
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
 
+    boolean graded = true;
+
     Button editStudent, deleteStudent;
     FloatingActionButton fab;
 
@@ -79,7 +81,7 @@ public class homeDirectory extends Fragment {
         dialog.show();
 
         // Widget declaration for the add student dialog.
-        final EditText sName, sBirth, sPhone, sAddress, sCity, sState, sZip;
+        final EditText sName, sBirth, sPhone, sAddress, sCity, sState;
         Button addStudent;
 
         // Widget instantiation.
@@ -125,7 +127,7 @@ public class homeDirectory extends Fragment {
 
                         if (!TextUtils.isEmpty(name)){
                             student newStudent = new student(name, grade, birthday, phone, address, city, state);
-                            databaseStudents.child(name).setValue(newStudent);
+                            databaseStudents.child(grade + " " + name).setValue(newStudent);
                             Toast.makeText(getContext(), "Student " + action + "ed.", Toast.LENGTH_SHORT).show();
                         }
                         else{
@@ -168,7 +170,14 @@ public class homeDirectory extends Fragment {
                         for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()){
                             student student = studentSnapshot.getValue(student.class);
                             if (grade == null){
-                                studentList.add(student);
+                                if (student.getGrade().equals("10B") || student.getGrade().equals("10G") || student.getGrade().equals("11B") || student.getGrade().equals("11G") || student.getGrade().equals("12B") || student.getGrade().equals("12G")){
+                                    studentList.add(student);
+                                }
+                                else {
+                                    studentList.add(0, student);
+                                }
+                                graded = false;
+                                fab.setVisibility(View.INVISIBLE);
                             }
                             else {
                                 if (student.getGrade().equals(grade)) {
@@ -232,6 +241,11 @@ public class homeDirectory extends Fragment {
             editStudent = (Button) view.findViewById(R.id.editStudent);
             deleteStudent = (Button) view.findViewById(R.id.deleteStudent);
 
+            if (!graded) {
+                editStudent.setVisibility(View.INVISIBLE);
+                deleteStudent.setVisibility(View.INVISIBLE);
+            }
+
             editStudent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -243,7 +257,7 @@ public class homeDirectory extends Fragment {
                 @Override
                 public void onClick(View view) {
                     String name = studentList.get(i).name;
-                    databaseStudents.child(name).removeValue();
+                    databaseStudents.child(student.getGrade() + " " + name).removeValue();
                     Toast.makeText(getContext(), "Student Removed.", Toast.LENGTH_SHORT).show();
                 }
             });
